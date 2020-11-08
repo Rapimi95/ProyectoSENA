@@ -79,7 +79,7 @@
 
         <div class="bottom-bar">
             <nav class="sidebar nav">
-                <a class="nav-link active" href="#">
+                <a class="nav-link active" href="/proyectos">
                     <span class="material-icons">source</span>
                 </a>
                 <a class="nav-link" href="#">
@@ -91,7 +91,7 @@
                 <a class="nav-link" href="#">
                     <span class="material-icons">show_chart</span>
                 </a>
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/usuarios">
                     <span class="material-icons">people</span>
                 </a>
             </nav>
