@@ -24,7 +24,15 @@ Route::get('/proyectos', function () {
 Route::get('/roles', function () {
     return view('roles');
 });
-
+Route::get('/resultados', function () {
+    return view('resultados');
+});
+Route::get('/revistas', function () {
+    return view('revistas');
+});
+Route::get('/articulo', function () {
+    return view('articulo');
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
