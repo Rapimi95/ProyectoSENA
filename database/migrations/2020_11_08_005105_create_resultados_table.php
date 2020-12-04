@@ -15,8 +15,8 @@ class CreateResultadosTable extends Migration
     {
         Schema::create('resultados', function (Blueprint $table) {
             $table->id();
-            $table->uuid('id_articulo');
-            $table->uuid('id_proyecto');
+            $table->integer('id_articulo');
+            $table->integer('id_proyecto');
             $table->text('detalle');
         });
     }

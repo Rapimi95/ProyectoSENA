@@ -2,18 +2,15 @@
   --darkgray: #2b2b2b;
   --gray: #555;
   --orange: #ff6712;
+  --orange-dark: #f75800;
 }
 
-html, body {
-  height: 100%;
+html, body, #app {
+  height: 100% !important;
 }
 
 body {
   background-color: var(--gray);
-}
-
-#app {
-  height: 100%;
 }
 
 .navbar {
@@ -29,12 +26,6 @@ body {
   color: var(--orange);
 }
 
-.bottom-bar {
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-}
-
 .sidebar {
   width: max-content;
   margin: 0 auto;
@@ -43,8 +34,10 @@ body {
 
 .card {
   background-color: #fff;
-  padding: 25px;
-  border-radius: .3rem;
+}
+
+.card-header {
+  background-color: #fff;
 }
 
 .background-logo {
@@ -52,24 +45,6 @@ body {
   bottom: 0;
   right: 0;
   width: 25%;
-}
-
-.title {
-  margin: 20px 0;
-  color: #fff;
-  display: flex;
-  align-items: center;
-}
-
-.list ul {
-  margin: 0;
-  padding: 0;
-}
-
-.list ul li {
-  padding: 10px;
-  border: 1px solid lightgray;
-  list-style: none;
 }
 
 .button-rounded {
@@ -86,6 +61,7 @@ body {
 
 .button-rounded:hover {
   background-color: var(--orange);
+  color: #fff;
 }
 
 .search-bar {
@@ -101,4 +77,43 @@ body {
 .search-bar .material-icons {
   position: absolute;
   right: 10px;
+}
+
+button:focus {
+  outline: none;
+}
+
+#action-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  width: 75%;
+}
+
+/* ************************************************** */
+
+.text-primary {
+  color: var(--orange) !important;
+}
+
+.btn-primary {
+  background-color: var(--orange);
+  border-color: var(--orange);
+}
+
+.btn-primary:hover {
+  background-color: var(--orange-dark);
+  border-color: var(--orange-dark);
+}
+
+.swal2-styled.swal2-confirm {
+  background-color: var(--orange);
+  border-color: var(--orange);
+}
+
+body.swal2-height-auto {
+  height: 100% !important;
 }

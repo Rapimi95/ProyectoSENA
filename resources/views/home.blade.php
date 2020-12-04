@@ -1,23 +1,74 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+<main class="container-fluid py-4">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="row mb-4">
+                <div class="col">
+                    <h1 class="text-white text-center">Gestionar recursos</h1>
+                </div>
+            </div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <a href="/proyectos" class="text-decoration-none">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <span class="material-icons text-primary h1">folder</span>
+                                </div>
+                                <h3 class="text-dark text-center m-0">
+                                    Proyectos
+                                </h3>
+                            </div>
                         </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
+                    </a>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <a href="/articulos" class="text-decoration-none">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <span class="material-icons text-primary h1">article</span>
+                                </div>
+                                <h3 class="text-dark text-center m-0">
+                                    Artículos
+                                </h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <a href="/revistas" class="text-decoration-none">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <span class="material-icons text-primary h1">menu_book</span>
+                                </div>
+                                <h3 class="text-dark text-center m-0">
+                                    Revistas
+                                </h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <a href="/usuarios" class="text-decoration-none">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <span class="material-icons text-primary h1">people</span>
+                                </div>
+                                <h3 class="text-dark text-center m-0">
+                                    Usuarios
+                                </h3>
+                            </div>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</main>
 @endsection

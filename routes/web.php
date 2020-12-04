@@ -13,26 +13,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/proyectos', function () {
-    return view('projects');
-});
-
-Route::get('/roles', function () {
-    return view('roles');
-});
-Route::get('/resultados', function () {
-    return view('resultados');
-});
-Route::get('/revistas', function () {
-    return view('revistas');
-});
-Route::get('/articulo', function () {
-    return view('articulo');
-});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/', function () {
+    return redirect('/login');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('proyectos', ProjectController::class);
+    Route::resource('articulos', ArticleController::class);
+    Route::resource('revistas', MagazineController::class);
+    
+    //Route::resource('file', FileController::class);
+});
+
+Route::get('/usuarios', function () {
+    return view('users');
+})->middleware('auth');
+
+Route::get('/roles', function () {
+    return view('roles');
+})->middleware('auth');
+
+Route::get('/resultados', function () {
+    return view('resultados');
+})->middleware('auth');
+
