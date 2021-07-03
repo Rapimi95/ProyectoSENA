@@ -1,6 +1,6 @@
 <script>
   let module;
-  
+
   if (location.href.includes('proyectos')) module = 'proyectos';
   if (location.href.includes('articulos')) module = 'articulos';
   if (location.href.includes('revistas')) module = 'revistas';
@@ -69,5 +69,15 @@
   
   $('#btn-cancel-create').click(function() {
     $('#main-section').hide();
+  });
+
+  $('#btn-search').click(function(event) {
+    event.preventDefault();
+
+    const query = $('#input-search').val().trim();
+    
+    $.get(`/ajax/${module}/${query}`, function(data) {
+      fillList(data);
+    });
   });
 </script>

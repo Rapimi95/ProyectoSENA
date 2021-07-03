@@ -26,6 +26,11 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('articulos', ArticleController::class);
     Route::resource('revistas', MagazineController::class);
     
+    Route::get('/ajax/proyectos', 'ProjectController@getAll');
+    
+    Route::get('/ajax/proyectos/{query}', 'ProjectController@search');
+    Route::get('/ajax/find/proyectos/{query}', 'ProjectController@find');
+
     //Route::resource('file', FileController::class);
 });
 

@@ -19,10 +19,16 @@
 
                     <div class="row border-bottom">
                         <div class="col">
-                            <div class="search-bar mb-4">
-                                <input type="text" class="form-control" placeholder="Buscar...">
-                                <span class="material-icons">search</span>
-                            </div>
+                            <form id="search-form">
+                                <div class="input-group search-bar mb-4">
+                                    <input type="text" id="input-search" class="form-control" placeholder="Buscar...">
+                                    <div class="input-group-append">
+                                        <button id="btn-search" class="input-group-text">
+                                            <span class="material-icons">search</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                     
@@ -67,7 +73,7 @@
                         </div>
                     </div>
 
-                    @yield('bottom-button')
+                    @yield('bottom-section')
                 </div>
             </div>
         </div>

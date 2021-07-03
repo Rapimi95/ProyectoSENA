@@ -5,7 +5,7 @@
 @endsection
 
 @section('list')
-    <div class="list-group list-group-flush border-bottom">
+    <div id="sidebar-list" class="list-group list-group-flush border-bottom">
         @foreach ($projects as $project)
             <button 
                 onClick="showProject({{ $project->id }})"
@@ -15,12 +15,18 @@
             </button>
         @endforeach
     </div>
+    
+    <div class="mt-4 d-flex justify-content-center">
+        {!! $projects->render() !!}
+    </div>
 @endsection
 
 @section('form')
     <form action="#" method="post">
         @csrf
         
+        <h3 class="mb-4">Datos del proyecto</h3>
+
         <div class="form-row">
             <div class="col-6">
                 <div class="form-group">
@@ -46,49 +52,105 @@
     </form>
 @endsection
 
-@section('bottom-button')
-    <button id="btn-upload" class="btn btn-primary mt-4 d-flex">
-        <span class="material-icons mr-2">
-            backup
-        </span>
-        Cargar archivos
-    </button>
+@section('bottom-section')
+    <div class="card mt-4 related-info">
+        <div class="card-body">
+            <h3 class="mb-4">Articulos fuente</h3>
 
-    <form action="/file" method="POST">
-        <input id="btn-upload-hidden" type="file" class="d-none" name="" id="">
-    </form>
+            <ul class="list-group">
+                <a href="" class="list-group-item list-group-item-action">Artículo fuente 1</a>
+                <a href="" class="list-group-item list-group-item-action">Artículo fuente 2</a>
+                <a href="" class="list-group-item list-group-item-action">Artículo fuente 3</a>
+                <a href="" class="list-group-item list-group-item-action">Artículo fuente 4</a>
+            </ul>
+        </div>
+    </div>
+
+    <div class="card mt-4 related-info">
+        <div class="card-body">
+            <h3 class="mb-4">Articulos resultantes</h3>
+
+            <ul class="list-group">
+                <a href="" class="list-group-item list-group-item-action">Artículo resultante 1</a>
+                <a href="" class="list-group-item list-group-item-action">Artículo resultante 2</a>
+                <a href="" class="list-group-item list-group-item-action">Artículo resultante 3</a>
+                <a href="" class="list-group-item list-group-item-action">Artículo resultante 4</a>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="card mt-4 related-info">
+        <div class="card-body">
+            <h3 class="mb-4">Archivos adjuntos</h3>
+
+            <ul class="list-group">
+                <a href="" class="list-group-item list-group-item-action">Archivo adjunto 1</a>
+                <a href="" class="list-group-item list-group-item-action">Archivo adjunto 2</a>
+                <a href="" class="list-group-item list-group-item-action">Archivo adjunto 3</a>
+                <a href="" class="list-group-item list-group-item-action">Archivo adjunto 4</a>
+            </ul>
+
+            <div class="d-flex justify-content-end">
+                <button id="btn-upload" class="btn btn-primary mt-4 d-flex">
+                    <span class="material-icons mr-2">
+                        backup
+                    </span>
+                    Cargar archivo
+                </button>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('scripts')
     <script>
-        const projects = @json($projects);
+        $('#btn-create, #btn-edit').click(function() {
+            $('.related-info').hide();
+        });
 
         function showProject(id) {
-            const project = projects.find(item => item.id == id);
+            $('.related-info').show();
 
-            $('#main-section').show();
-
-            $('#action-buttons .btn').hide();
-            $('#main-section #btn-edit').show();
-            $('#main-section #btn-delete').show();
-
-            $('#main-section form .form-control').attr('disabled', true);
+            $.get(`/ajax/find/proyectos/${id}`, function(data) {
+                const project = data;
             
-            $('#main-section form').attr('action', `/proyectos/${project.id}`);
-            $('#main-section form').attr('method', 'post');
+                $('#main-section').show();
 
-            $('#btn-delete').closest('form').attr('action', `/proyectos/${project.id}`);
+                $('#action-buttons .btn').hide();
+                $('#main-section #btn-edit').show();
+                $('#main-section #btn-delete').show();
 
-            $('#main-section form').prepend('<input type="hidden" name="_method" value="put">');
+                $('#main-section form .form-control').attr('disabled', true);
+                
+                $('#main-section form').attr('action', `/proyectos/${project.id}`);
+                $('#main-section form').attr('method', 'post');
 
-            $('#main-section form [name="id"]').val(project.id);
-            $('#main-section form [name="name"]').val(project.name);
-            $('#main-section form [name="category"]').val(project.category);
-            $('#main-section form [name="description"]').val(project.description);
+                $('#btn-delete').closest('form').attr('action', `/proyectos/${project.id}`);
+
+                $('#main-section form').prepend('<input type="hidden" name="_method" value="put">');
+
+                $('#main-section form [name="id"]').val(project.id);
+                $('#main-section form [name="name"]').val(project.name);
+                $('#main-section form [name="category"]').val(project.category);
+                $('#main-section form [name="description"]').val(project.description);
+            });
         }
 
-        $('#btn-upload').click(function() {
-            $('#btn-upload-hidden').click();
-        });
+        function fillList(data) {
+            let html = '';
+
+            data.forEach(element => {
+                html += `
+                    <button 
+                        onClick="showProject(${ element.id })"
+                        class="btn-list-item list-group-item list-group-item-action">
+                        <div>${ element.name }</div>
+                        <small class="text-primary">${ element.category }</small>
+                    </button>
+                `
+            });
+
+            $('#sidebar-list').html(html);
+        }
     </script>
 @endsection

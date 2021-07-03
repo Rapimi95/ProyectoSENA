@@ -64,19 +64,24 @@ body {
   color: #fff;
 }
 
-.search-bar {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
 .search-bar input {
   border-radius: 20px;
 }
 
-.search-bar .material-icons {
-  position: absolute;
-  right: 10px;
+
+.search-bar button {
+  border-radius: 0 20px 20px 0;
+  background-color: var(--darkgray);
+  color: #fff;
+}
+
+.search-bar button:hover {
+  background-color: var(--orange);
+}
+
+.search-bar button:focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
 }
 
 button:focus {
@@ -116,4 +121,13 @@ button:focus {
 
 body.swal2-height-auto {
   height: 100% !important;
+}
+
+.page-item.active .page-link {
+  background-color: var(--orange);
+  border-color: var(--orange);
+}
+
+.page-link {
+  color: var(--darkgray);
 }

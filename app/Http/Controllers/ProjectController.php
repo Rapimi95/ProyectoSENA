@@ -9,8 +9,7 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        $projects = Project::orderBy('name')
-        ->get();
+        $projects = Project::orderBy('name')->paginate(15);
 
         return view('projects', compact('projects'));
     }
@@ -25,8 +24,8 @@ class ProjectController extends Controller
             $project->description = $request->description;
             
             $project->save();
-        } catch (\Throwable $th) {
-            throw $th;
+        } catch (\Exception $e) {
+            dd($e);
         }
 
         return redirect('/proyectos');
@@ -59,5 +58,38 @@ class ProjectController extends Controller
         }
 
         return redirect('/proyectos');
+    }
+    
+    public function getAll()
+    {
+        try {
+            $projects = Project::orderBy('name')->get();
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+
+        return $projects;
+    }
+
+    public function search($query)
+    {
+        try {
+            $projects = Project::where('name', 'LIKE', "%$query%")->get();
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+
+        return $projects;
+    }
+
+    public function find($query)
+    {
+        try {
+            $project = Project::where('id', $query)->firstOrFail();
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+
+        return $project;
     }
 }
