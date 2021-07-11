@@ -23,15 +23,22 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('proyectos', ProjectController::class);
-    Route::resource('articulos', ArticleController::class);
+    Route::resource('articulos-resultantes', ResultingArticleController::class);
+    Route::resource('articulos-fuente', SourceArticleController::class);
     Route::resource('revistas', MagazineController::class);
+    Route::resource('relatedfile', FileController::class);
     
-    Route::get('/ajax/proyectos', 'ProjectController@getAll');
-    
+    Route::post('/proyectos/relacionar/articulo-fuente', 'ProjectController@attachSourceArticle');
+    Route::post('/proyectos/relacionar/articulo-resultante', 'ProjectController@attachResultingArticle');
+
     Route::get('/ajax/proyectos/{query}', 'ProjectController@search');
     Route::get('/ajax/find/proyectos/{query}', 'ProjectController@find');
+    
+    Route::get('/ajax/articulos-fuente/{query}', 'SourceArticleController@search');
+    Route::get('/ajax/find/articulos-fuente/{query}', 'SourceArticleController@find');
 
-    //Route::resource('file', FileController::class);
+    Route::get('/ajax/articulos-resultantes/{query}', 'ResultingArticleController@search');
+    Route::get('/ajax/find/articulos-resultantes/{query}', 'ResultingArticleController@find');
 });
 
 Route::get('/usuarios', function () {

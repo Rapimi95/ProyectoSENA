@@ -26,7 +26,7 @@
                     </a>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <a href="/articulos" class="text-decoration-none">
+                    <a href="/articulos-fuente" class="text-decoration-none">
                         <div class="card">
                             <div class="card-body">
                                 <div class="text-center">
@@ -40,7 +40,7 @@
                     </a>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <a href="/articulos" class="text-decoration-none">
+                    <a href="/articulos-resultantes" class="text-decoration-none">
                         <div class="card">
                             <div class="card-body">
                                 <div class="text-center">

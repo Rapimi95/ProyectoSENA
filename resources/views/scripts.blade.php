@@ -1,8 +1,6 @@
 <script>
   let module;
 
-  if (location.href.includes('proyectos')) module = 'proyectos';
-  if (location.href.includes('articulos')) module = 'articulos';
   if (location.href.includes('revistas')) module = 'revistas';
 
   $('#main-section').hide();
@@ -15,7 +13,7 @@
       cancelButtonText: 'Cancelar',
     }).then((result) => {
       if (result.isConfirmed) {
-        $('#main-section form').submit();
+        $('#main-section #main-form').submit();
       }
     });
   });
@@ -32,7 +30,7 @@
       if (result.isConfirmed) {
         $('#btn-delete').closest('form').submit();
       }
-    });  
+    });
   });
 
   $('#btn-create').click(function() {

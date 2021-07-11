@@ -26,6 +26,10 @@
     <!-- Styles -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet"></head>
+
+    <!-- Select 2 -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <body>
     <div id="app">
         <nav class="navbar fixed-top navbar-expand-md navbar-dark shadow-sm">
@@ -85,6 +89,8 @@
         <div class="h-100" style="padding-top: 60px;">
             @yield('content')
         </div>
+
+        @yield('modals')
     </div>
 
     @include('scripts')

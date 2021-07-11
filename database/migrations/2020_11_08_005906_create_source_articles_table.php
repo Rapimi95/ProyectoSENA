@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateArticlesTable extends Migration
+class CreateSourceArticlesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateArticlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('source_articles', function (Blueprint $table) {
             $table->id();
             $table->string('subject');
             $table->string('title');
@@ -22,7 +22,7 @@ class CreateArticlesTable extends Migration
             $table->string('state');
             $table->string('type');
             $table->text('content');
-            $table->year('year');
+            $table->integer('year');
             $table->string('country');
             $table->text('result');
             $table->text('summary');
